@@ -3,6 +3,7 @@ import * as d3 from "d3";
 async function drawLineChart() {
 
   // access data
+  
   const data = await d3.json("data/my_weather_data.json");
 
   const yAccessor = d => d.temperatureMax;
@@ -11,6 +12,7 @@ async function drawLineChart() {
   const xAccessor = d => parseDate(d.date);
 
   // create chart dimensions
+
   const dms = {
     width: window.innerWidth * 0.9,
     height: 400,
@@ -26,6 +28,7 @@ async function drawLineChart() {
   dms.boundedHeight = dms.height - dms.margins.top - dms.margins.bottom;
 
   // draw canvas
+
   const wrapper = d3.select("#wrapper")
     .append("svg")
       .attr("width", dms.width)
@@ -39,7 +42,7 @@ async function drawLineChart() {
         ${dms.margins.top}px
       )`);
 
-  // create scales    
+  // create scales 
 
   const yScale = d3
     .scaleLinear()

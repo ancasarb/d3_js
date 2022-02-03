@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 
-async function draw() {
+async function drawLineChart() {
 
     // access data
 
@@ -97,4 +97,4 @@ async function draw() {
             .style("transform", `translateY(${dms.innerHeight}px)`);
 }
 
-draw();
+drawLineChart();
