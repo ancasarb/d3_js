@@ -82,14 +82,14 @@ async function drawLineChart() {
     // draw peripherals
 
     const yAxisGenerator = d3
-        .axisLeft(yScale)
+        .axisLeft(yScale);
 
     const yAxis = inner
         .append("g")
         .call(yAxisGenerator);
 
     const xAxisGenerator = d3
-        .axisBottom(xScale)
+        .axisBottom(xScale);
 
     const xAxis = inner
         .append("g")

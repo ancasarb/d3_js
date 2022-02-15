@@ -95,7 +95,7 @@ async function drawScatter() {
                             .attr("x", dms.innerWidth / 2)
                             .attr("y", dms.margins.bottom - 10)
                             .attr("fill", "black")
-                            .attr("font-size", "1.4em")
+                            .style("font-size", "1.4em")
                             .text("Flipper length (mms)");
     
     const yAxisGenerator = d3

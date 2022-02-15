@@ -24,8 +24,8 @@ async function drawLineChart() {
     }
   }
 
-  dms.boundedWidth = dms.width - dms.margins.left - dms.margins.right;
-  dms.boundedHeight = dms.height - dms.margins.top - dms.margins.bottom;
+  dms.innerWidth = dms.width - dms.margins.left - dms.margins.right;
+  dms.innerHeight = dms.height - dms.margins.top - dms.margins.bottom;
 
   // draw canvas
 
@@ -34,7 +34,7 @@ async function drawLineChart() {
       .attr("width", dms.width)
       .attr("height", dms.height);
 
-  const bounds = wrapper
+  const inner = wrapper
     .append("g")
       // translate towards right and bottom
       .style("transform", `translate(
@@ -47,31 +47,31 @@ async function drawLineChart() {
   const yScale = d3
     .scaleLinear()
     .domain(d3.extent(data, yAccessor))
-    .range([dms.boundedHeight, 0]);
+    .range([dms.innerHeight, 0]);
 
   const xScale = d3
     .scaleTime()
     .domain(d3.extent(data, xAccessor))
-    .range([0, dms.boundedWidth]);
+    .range([0, dms.innerWidth]);
 
   // draw data  
 
   const yTemperaturePlacement = yScale(32);
 
-  bounds
+  inner
     .append("rect")
       .attr("x", 0)
       .attr("y", yTemperaturePlacement)
-      .attr("height", dms.boundedHeight - yTemperaturePlacement)
-      .attr("width", dms.boundedWidth)
+      .attr("height", dms.innerHeight - yTemperaturePlacement)
+      .attr("width", dms.innerWidth)
       .attr("fill", "#e0f3f3"); // lower precedence than .style("fill", ...) and can be overriden from CSS stylesheets
 
   const lineGenerator = d3
     .line()
     .x(d => xScale(xAccessor(d)))
-    .y(d => yScale(yAccessor(d)))
+    .y(d => yScale(yAccessor(d)));
 
-  bounds
+  inner
     .append("path")
       .attr("d", lineGenerator(data))
       .attr("fill", "none")
@@ -81,19 +81,19 @@ async function drawLineChart() {
   // draw peripherals
   
   const yAxisGenerator = d3
-    .axisLeft(yScale)
+    .axisLeft(yScale);
 
-  const yAxis = bounds
+  const yAxis = inner
     .append("g")
     .call(yAxisGenerator);
 
   const xAxisGenerator = d3
-    .axisBottom(xScale)
+    .axisBottom(xScale);
 
-  const xAxis = bounds
+  const xAxis = inner
     .append("g")
     .call(xAxisGenerator)
-    .style("transform", `translateY(${dms.boundedHeight}px)`);  
+    .style("transform", `translateY(${dms.innerHeight}px)`);  
 }
 
 drawLineChart();
