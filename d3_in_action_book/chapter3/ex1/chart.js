@@ -123,17 +123,17 @@ async function draw() {
             .html(p => p);
     });
 
-    // external svg
+    //external svg
     
     const externalSvgData = await d3.html("noun-football-1907.svg");
     
-    teamGroups.each(function() {
+    teamGroups.each(function(d) {
       const parent = d3.select(this)
                           .append("g")
                           .style("transform", "translate(-10px, 50px)")
                           .node();
       
-      d3.select(externalSvgData)
+    d3.select(externalSvgData)
             .selectAll("path")
             .each(function() {
               parent.appendChild(this.cloneNode(true));
@@ -146,6 +146,7 @@ async function draw() {
     
     teamGroups.selectAll("path")
                   .style("fill", p => fourColorScale(regionAccessor(p)));
+
   }
 
 draw();
