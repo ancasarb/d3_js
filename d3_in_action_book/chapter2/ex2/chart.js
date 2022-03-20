@@ -19,7 +19,7 @@ async function drawBarChart() {
     };
 
     dms.innerHeight = dms.height - dms.margins.top - dms.margins.bottom;
-    dms.innerWidth = dms.innerWidth - dms.margins.left - dms.margins.right;
+    dms.innerWidth = dms.width - dms.margins.left - dms.margins.right;
 
     // draw canvas
 

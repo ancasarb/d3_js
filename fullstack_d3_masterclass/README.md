@@ -30,3 +30,8 @@
 
 ![Module 5 - Project](completed/module5_project.png "Module 5 - Project")
 
+
+# Module 7
+
+![Module 7](completed/module7.png "Module 7")
+
